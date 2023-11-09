@@ -26,8 +26,8 @@ Table user {
 // Table message
 Table message {
   id SERIAL [primary key]
-  user user [not null]
-  group group
+  user INTEGER [not null]
+  group INTEGER
   content TEXT [not null]
 }
 Ref: message.user > user.id
@@ -37,16 +37,18 @@ Ref: message.group > group.id
 // default group everybody
 // unique admin AND user
 Table group_user{
-  group group
-  user user
+  group INTEGER
+  user INTEGER
+  status BOOL
 }
 Ref: group_user.group > group.id
 Ref: group_user.user > user.id
 
+
 // Table group
 Table group {
   id SERIAL [primary key]
-  admin user
+  admin INTEGER
   name TEXT [unique, not null]
 }
 Ref: group.admin > user.id 
