@@ -1,0 +1,53 @@
+
+/*
+        OBJECTIF
+  On peut faire une demande dans un group
+  L'admin du group va pouvoir accepté
+  L'admin aura une page config du group
+
+  Il y a un mega-group par default
+
+  user status
+  0 -> invité
+  1 -> compte       send message
+  2 -> moderateur   create group
+  3 -> admin        del account / group / msg
+*/
+
+// Table user
+Table user {
+  id SERIAL [primary key]
+  username TEXT [not null, unique]
+  password TEXT [not null]
+  email CHAR(1) [not null]
+  status INTEGER [not null, default: 1]
+}
+
+// Table message
+Table message {
+  id SERIAL [primary key]
+  user user [not null]
+  group group
+  content TEXT [not null]
+}
+Ref: message.user > user.id
+Ref: message.group > group.id
+
+// Table group user
+// default group everybody
+// unique admin AND user
+Table group_user{
+  group group
+  user user
+}
+Ref: group_user.group > group.id
+Ref: group_user.user > user.id
+
+// Table group
+Table group {
+  id SERIAL [primary key]
+  admin user
+  name TEXT [unique, not null]
+}
+Ref: group.admin > user.id 
+
