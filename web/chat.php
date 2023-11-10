@@ -41,7 +41,7 @@
 		window.addEventListener("load", () => {
 			let node = document.querySelector(".section-admin-top");
 			node.addEventListener("click", () => {    
-				window.location.href = "admin.php";});
+				window.location.href = "settings.php";});
 			refreshChat();
 		})
 		

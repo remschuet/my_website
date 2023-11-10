@@ -3,10 +3,10 @@
     require_once("action/CommonAction.php");
     require_once("action/DAO/UserDAO.php");
 
-    class AdminAction extends CommonAction {
+    class SettingsAction extends CommonAction {
 
         public function __construct() {
-            parent::__construct(CommonAction::$VISIBILITY_ADMINISTRATOR);
+            parent::__construct(CommonAction::$VISIBILITY_MODERATOR);
         }
 
         protected function executeAction() {

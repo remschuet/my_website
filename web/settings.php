@@ -1,7 +1,7 @@
 <?php
-    require_once("action/AdminAction.php");
+    require_once("action/SettingsAction.php");
 
-    $action = new AdminAction();
+    $action = new SettingsAction();
     $data = $action->execute();
 ?>
 
@@ -12,7 +12,7 @@
 		<link href="css/global.css" rel="stylesheet" />
 	</head>
 	<body>
-        <div>Admin</div>
+        <div>Settings</div>
 	</body>
 
 </html>
