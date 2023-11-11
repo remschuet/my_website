@@ -14,5 +14,11 @@
                 $_SESSION["groupe"] = $_POST['action'];
                 header("location:chat.php");
             }
+            else if (isset($_POST["groupeName"])) {
+                UserDAO::createGroupe($_SESSION["username"], $_POST["groupeName"]);
+                UserDAO::addUserToGroupe($_SESSION["username"], $_POST["groupeName"]);
+                header("location:home.php");
+                exit;
+            }
         }
 	}

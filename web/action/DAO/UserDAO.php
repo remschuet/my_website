@@ -54,7 +54,7 @@
         }
 
         // Create groupe 
-        public static function createGroupe($_userName, $_name){
+        public static function createGroupe($_userName, $_name){    /*str, str*/
             $db = new SQLite3('../private/mydata.db');
 
             $query = $db->prepare("INSERT INTO groupe (admin, name) VALUES ((SELECT id FROM user WHERE username = :username), :name)");
@@ -147,5 +147,22 @@
             
             return $data;
         }
+
+        // Get all users in a groupe
+        public static function getAjaxUserForGroupeArray($_groupeName) {  /* str */
+            $db = new SQLite3('../private/mydata.db');
+            $query = "SELECT (SELECT username from user where id = user) AS username
+                        FROM user_groupe
+                       WHERE groupe = (SELECT id from groupe where name = '$_groupeName')";
+            $result = $db->query($query);
+
+            $data = array();
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $data[] = $row;
+            }
+            
+            return $data;
+        }
+
 
     }

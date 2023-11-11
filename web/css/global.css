@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-size: 62.5%;
+    background-color: aliceblue;
 }
 
 
@@ -125,7 +126,6 @@
 
 /* HOME */
 
-
 .section-home-top{
     display: flex;
     align-items: center;
@@ -138,6 +138,21 @@
 .home-groupe-form{
     display: flex;
     flex-direction: column;
+    height: 70vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.home-create-groupe-form{
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+}
+
+.home-create-input{
+    width: 80%;
+    align-self: center;
+    font-size: 4rem;
 }
 
 .home-groupe{
@@ -159,7 +174,49 @@
 }
 
 .home-section{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    height: 100%;
+
     width: 100vw;
+}
+
+/* SETTINGS */
+.section-settings{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-settings * {
+    font-size: 6rem;
+}
+
+.settings-title{
+    padding: 3rem;
+}
+
+.settings-current-user{
+    border: 2px solid black;
+    width: 80%;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.settings-username{
+    border: 1px solid gray;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 1rem;
 }
 
 /* MEDIA */
@@ -178,5 +235,8 @@
 
     .home-section{
         width: 60vw;
+    }
+    .home-section *{
+        font-size: 2.5rem;
     }
 }

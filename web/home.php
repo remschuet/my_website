@@ -22,6 +22,12 @@
 			<form action="" method="post" class="home-groupe-form">
 				<!-- Btn genere par ajax -->
 			</form>
+
+			<form action="" method="post" class="home-create-groupe-form">
+				<input type="text" name="groupeName" class="home-create-input" id="groupeName" placeholder="groupe name" required>
+				<button type="submit" class="home-groupe">Create</button>
+			</form>
+
 		</div>
 	</body>
 

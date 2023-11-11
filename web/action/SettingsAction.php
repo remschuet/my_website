@@ -10,6 +10,8 @@
         }
 
         protected function executeAction() {
-
+            if (isset($_POST["addPeople"])){
+                UserDAO::addUserToGroupe($_POST["addPeople"], $_SESSION["groupe"]);
+            }
         }
     }
