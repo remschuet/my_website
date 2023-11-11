@@ -21,7 +21,7 @@
                     $_SESSION["visibility"] = $user["visibility"];
 
 					# Message de bienvenu
-					UserDAO::sendMsg($_SESSION["username"], 1, "Salut a tous !");
+					UserDAO::sendMsg($_SESSION["username"], 'public', "Salut a tous !");
 					
 					# Sortir vers la page admin
 					header("location:home.php");
@@ -46,8 +46,8 @@
 							$_SESSION["visibility"] = $user["visibility"];
 		
 							# Message de bienvenu
-							UserDAO::sendMsg($_SESSION["username"], 1, "Une nouvelle personne avec nous !");
-							# UserDAO::addUserToGroupe($_SESSION["username"], 'public');						
+							UserDAO::addUserToGroupe($_SESSION["username"], 'public');						
+							UserDAO::sendMsg($_SESSION["username"], 'public', "Une nouvelle personne avec nous !");
 						}
 						# Sortir vers la page admin
 						header("location:home.php");
