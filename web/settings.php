@@ -13,9 +13,14 @@
 	</head>
 	<body>
 		<div class="section-settings">
+			<div class="back">
+				<b>CI</b>
+			</div>
+
         	<div class="settings-title"> <?php echo $_SESSION["groupe"] ?> </div>
 		
-			<form action="" method="post" class="home-create-groupe-form">
+			<!-- FIX ME , est ce que je suis admin ? -->
+			<form action="" method="post" class="settings-create-groupe-form">
 				<input type="text" name="addPeople" class="settings-create-input" id="addPeople" placeholder="username" required>
 			</form>
 
@@ -26,6 +31,11 @@
 
 	<script>
 		window.addEventListener("load", () => {
+			let nodeBack = document.querySelector(".back");
+			nodeBack.addEventListener("click", () =>{
+				window.location.href = "chat.php";				
+			})
+
 			refreshUser();
 		})
 
@@ -43,16 +53,37 @@
 				node.innerHTML = "";
 				data.forEach(msg => {
 					console.log(data);
+					
+					let parent = document.createElement("div");
+					parent.className = "settings-parent-username-btn";
 
 					let div = document.createElement("div");
 					div.className = "settings-username";
 					div.textContent = msg["username"];
-					node.appendChild(div);
+
+					// Créer un bouton pour chaque élément
+					let button = document.createElement("button");
+					button.type = "submit";
+					button.name = "action";
+					button.value = msg["name"]; // Notez que vous utilisez msg["name"], assurez-vous que c'est correct
+					button.className = "home-groupe";
+					button.textContent = "X"; // Ajoutez le texte que vous souhaitez pour le bouton
+
+					button.addEventListener("click", () => {
+						// Ajoutez ici le code que vous souhaitez exécuter lorsque le bouton est cliqué
+						console.log("supprimer :" + msg["username"]);
+					});
+
+					// Ajouter à la même div parent
+					node.appendChild(parent);				
+
+					parent.appendChild(div);
+					parent.appendChild(button);
 				})
 
 				setTimeout(() => {
 					refreshUser();
-				}, 1000);
+				}, 3000);
 
 			})
 		}

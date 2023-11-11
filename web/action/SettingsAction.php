@@ -11,6 +11,7 @@
 
         protected function executeAction() {
             if (isset($_POST["addPeople"])){
+                // Verif si il existe
                 UserDAO::addUserToGroupe($_POST["addPeople"], $_SESSION["groupe"]);
             }
         }

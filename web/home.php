@@ -15,8 +15,10 @@
 	<body>
 		<div class="home-section">
 			<div class ="section-home-top"> 
-				<div><?php echo $data["username"]; ?> </div>
-				<div> Quitter </div>
+				<div class="home-top-username"><?php echo $data["username"]; ?> </div>
+				<form action="?logout=true" class="deconnexion" method="post">
+					<button class="lobbyBtn" type="submit">Quitter</button>
+				</form>
 			</div>
 			<br>
 			<form action="" method="post" class="home-groupe-form">

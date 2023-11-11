@@ -14,11 +14,10 @@
 	</head>
 	<body>
 		<div class="corp-admin">
-<!--
-			<form action="?logout=true" class="deconnexion" method="post">
-				<button class="lobbyBtn" type="submit">Quitter</button>
-			</form>
--->			<div class="section-admin-top">
+			<div class="back">
+				<b>CI</b>
+			</div>
+			<div class="section-admin-top">
 				<b> <?php echo $data["username"] ?> </b>
 			</div>
 			<div class="section-msg">
@@ -27,7 +26,6 @@
 			<br>
 			<form action="" class="messageZone" method="post">
 				<input type="text" name="message" id="message" placeholder="message" autofocus>
-			<!--	<button type="submit">SEND</button> -->
 			</form>
 		</div>
 	</body>
@@ -42,9 +40,15 @@
 		}, 200);
 
 		window.addEventListener("load", () => {
+			let nodeBack = document.querySelector(".back");
+			nodeBack.addEventListener("click", () =>{
+				window.location.href = "home.php";				
+			})
+
 			let node = document.querySelector(".section-admin-top");
 			node.addEventListener("click", () => {    
-				window.location.href = "settings.php";});
+				window.location.href = "settings.php";
+			});
 			refreshChat();
 		})
 		
@@ -61,8 +65,6 @@
 				console.log(data);
 				let node = document.querySelector(".section-msg");
 				node.innerHTML = "";
-
-//				const lastMessages = data.slice(-30);
 
 				data.forEach(msg => {
 					// Créez un conteneur de message (div)

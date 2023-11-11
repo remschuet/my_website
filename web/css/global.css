@@ -5,8 +5,6 @@
     background-color: aliceblue;
 }
 
-
-
 .section-admin-top{
     padding: 1rem;
     border: 2px solid grey; 
@@ -87,11 +85,12 @@
 }
 
 .deconnexion *{
-    position: absolute;
-    right: 0;
-    padding: 10px;
+    font-size: 4rem;
+    padding: 2rem;
     margin: 10px;
     margin-right: 30px;
+    border: 2px, solid black;
+    border-radius: 1rem;
 }
 
 .message{
@@ -135,6 +134,12 @@
     height: 10vh;
 }
 
+.home-top-username{
+    font-size: 6rem;
+    font-weight: bold;
+    border-bottom: 0.3rem solid grey;
+}
+
 .home-groupe-form{
     display: flex;
     flex-direction: column;
@@ -170,7 +175,6 @@
     padding: 1rem;
     border: 0.5rem solid black;
     border-radius: 1rem;
-
 }
 
 .home-section{
@@ -190,7 +194,7 @@
     left:50%;
     transform: translate(-50%,-50%);
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,21 +216,41 @@
     padding-bottom: 4rem;
 }
 
+.settings-create-groupe-form{
+    margin-bottom: 3rem;
+}
+
 .settings-username{
-    border: 1px solid gray;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.settings-parent-username-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: baseline;
+    margin-left: 10%;
+    margin-right: 5%;
+    border-bottom: 2px solid red;
+}
+
+
+.back{
+    position: absolute;
+    align-self: left;
+    left: 0;
+    font-size: 3rem;
 }
 
 /* MEDIA */
 
 @media only screen and (min-width: 1000px) { /*768*/ 
     .corp-admin{
-        width: 60vw;
+        width: 40vw;
     }
     .all-form{
-        width: 60vw;
+        width: 40vw;
     }
 
     .sign-form *, .login-form *{
@@ -234,9 +258,12 @@
     }
 
     .home-section{
-        width: 60vw;
+        width: 40vw;
     }
     .home-section *{
         font-size: 2.5rem;
+    }
+    .section-settings{
+        width: 40vw;
     }
 }
