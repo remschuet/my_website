@@ -24,7 +24,7 @@
 					UserDAO::sendMsg($_SESSION["username"], 1, "Salut a tous !");
 					
 					# Sortir vers la page admin
-					header("location:chat.php");
+					header("location:home.php");
 					exit;
 				}
 				else {
@@ -47,9 +47,10 @@
 		
 							# Message de bienvenu
 							UserDAO::sendMsg($_SESSION["username"], 1, "Une nouvelle personne avec nous !");
+							# UserDAO::addUserToGroupe($_SESSION["username"], 'public');						
 						}
 						# Sortir vers la page admin
-						header("location:chat.php");
+						header("location:home.php");
 						exit;
 					}
 					else {

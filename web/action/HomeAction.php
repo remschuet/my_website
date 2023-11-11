@@ -11,7 +11,7 @@
 
         protected function executeAction() {
             if (isset($_POST['action'])) {
-                $_SESSION["groupe"] = $_POST['action']; 
+                $_SESSION["groupe"] = $_POST['action'];
                 header("location:chat.php");
             }
         }

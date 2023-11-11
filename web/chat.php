@@ -33,6 +33,8 @@
 	</body>
 
 	<script>
+		let groupeJS = '<?php echo $_SESSION["groupe"] ?>';
+		console.log(groupeJS);
 
 		setTimeout(() => {
 			let element = document.querySelector(".section-msg");
@@ -60,15 +62,15 @@
 				let node = document.querySelector(".section-msg");
 				node.innerHTML = "";
 
-				const lastMessages = data.slice(-30);
+//				const lastMessages = data.slice(-30);
 
-				lastMessages.forEach(msg => {
+				data.forEach(msg => {
 					// Créez un conteneur de message (div)
 					var messageDiv = document.createElement("div");
 					messageDiv.className = "message";
 
 					// Remplissez le contenu du message
-					messageDiv.innerHTML = '<p class="user">(' + msg.sender + ')</p><p> - ' + msg.content + '</p>';
+					messageDiv.innerHTML = '<p class="user">(' + msg.user + ')</p><p> - ' + msg.content + '</p>';
 					node.appendChild(messageDiv);
 				})
 

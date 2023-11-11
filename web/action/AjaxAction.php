@@ -12,11 +12,12 @@
 			$result = "";
 			if (isset($_POST['type'])) {
 				if ($_POST['type'] == "getMsg"){
-					$result = UserDAO::getAjaxMessageArray();
+					$result = UserDAO::getAjaxMsgForGroupeArray($_SESSION["groupe"]);
 				}
 				if ($_POST['type'] == "getGroupe"){
-					$result = UserDAO::getAjaxGroupeNameForUserArray();
+					$result = UserDAO::getAjaxGroupeNameForUserArray($_SESSION["username"]);
 				}
+
 				echo json_encode($result);
 			}
 		}

@@ -10,7 +10,7 @@
 
         protected function executeAction() {
             if (isset($_POST["message"]) && $_POST["message"] != "") {
-				UserDAO::sendMsg($_SESSION["username"], 1, $_POST["message"]);
+				UserDAO::sendMsg($_SESSION["username"], $_SESSION["groupe"], $_POST["message"]);
                 header("location:chat.php");
             }
 		}
