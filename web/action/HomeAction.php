@@ -1,17 +1,18 @@
+
 <?php
     require_once("action/CommonAction.php");
     require_once("action/DAO/UserDAO.php");
 
-    class ChatAction extends CommonAction {
+    class HomeAction extends CommonAction {
 
         public function __construct() {
             parent::__construct(CommonAction::$VISIBILITY_MEMBER);
         }
 
         protected function executeAction() {
-            if (isset($_POST["message"]) && $_POST["message"] != "") {
-				UserDAO::sendMsg($_SESSION["username"], 1, $_POST["message"]);
+            if (isset($_POST['action'])) {
+                $_SESSION["groupe"] = $_POST['action']; 
                 header("location:chat.php");
             }
-		}
+        }
 	}

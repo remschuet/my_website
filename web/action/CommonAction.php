@@ -14,10 +14,9 @@
         }
 
         public function execute() {
-            
             if (!empty($_GET["logout"])) {
                 if ($_SESSION["username"] != "invité")
-                    UserDAO::sendMsg($_SESSION["username"], "Je me suis déconnecté !");
+                    UserDAO::sendMsg($_SESSION["username"], 1, "Je me suis déconnecté !");
                 session_unset();
                 session_destroy();
                 session_start();

@@ -42,20 +42,21 @@
         }
 
         # Send message to database
-        public static function sendMsg($_userName, $_content){
+        public static function sendMsg($_userName, $_groupe_id, $_content){
             $db = new SQLite3('../private/mydata.db');
 
-            $query = $db->prepare("INSERT INTO message (sender, content) VALUES ((SELECT id FROM user WHERE username = :username), :content)");
+            $query = $db->prepare("INSERT INTO message (user, groupe, content) VALUES ((SELECT id FROM user WHERE username = :username), :groupe, :content)");
             
             // Liez les valeurs aux paramètres
             $query->bindParam(':username', $_userName, SQLITE3_TEXT);
+            $query->bindParam(':groupe', $_groupe_id, SQLITE3_TEXT);
             $query->bindParam(':content', $_content, SQLITE3_TEXT);
             $query->execute();
         }
 
         public static function getAjaxMessageArray() {
             $db = new SQLite3('../private/mydata.db');
-            $query = "SELECT (SELECT username FROM user WHERE user.id = sender) AS sender, content FROM message";
+            $query = "SELECT (SELECT username FROM user WHERE user.id = user) AS sender, content FROM message";
             $result = $db->query($query);
 
             $data = array();
@@ -65,4 +66,37 @@
             
             return $data;
         }
+
+        // Get all groupe for a user
+        public static function getAjaxGroupeNameForUserArray() {
+            $db = new SQLite3('../private/mydata.db');
+            $query = "SELECT name FROM groupe WHERE id IN (SELECT groupe FROM user_groupe)";
+            $result = $db->query($query);
+
+            $data = array();
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $data[] = $row;
+            }
+            
+            return $data;
+        }
+
+        // Get all msg for a groupe
+        public static function getAjaxMsgForGroupeArray($groupe) {
+            $db = new SQLite3('../private/mydata.db');
+            $query = "SELECT * 
+                        FROM message 
+                       WHERE groupe = (SELECT id FROM groupe WHERE name = $groupe) 
+                       ORDER BY id ASC 
+                       LIMIT (SELECT COUNT(*) - 5 FROM message WHERE groupe = (SELECT id FROM groupe WHERE name = $groupe)), 5;";
+            $result = $db->query($query);
+
+            $data = array();
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $data[] = $row;
+            }
+            
+            return $data;
+        }
+
     }

@@ -21,7 +21,7 @@
                     $_SESSION["visibility"] = $user["visibility"];
 
 					# Message de bienvenu
-					UserDAO::sendMsg($_SESSION["username"], "Salut a tous !");
+					UserDAO::sendMsg($_SESSION["username"], 1, "Salut a tous !");
 					
 					# Sortir vers la page admin
 					header("location:chat.php");
@@ -46,7 +46,7 @@
 							$_SESSION["visibility"] = $user["visibility"];
 		
 							# Message de bienvenu
-							UserDAO::sendMsg($_SESSION["username"], "Une nouvelle personne avec nous !");
+							UserDAO::sendMsg($_SESSION["username"], 1, "Une nouvelle personne avec nous !");
 						}
 						# Sortir vers la page admin
 						header("location:chat.php");

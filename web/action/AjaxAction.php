@@ -9,8 +9,15 @@
 		}
 
 		protected function executeAction() {
-            $result = UserDAO::getAjaxMessageArray();
-
-			echo json_encode($result);
+			$result = "";
+			if (isset($_POST['type'])) {
+				if ($_POST['type'] == "getMsg"){
+					$result = UserDAO::getAjaxMessageArray();
+				}
+				if ($_POST['type'] == "getGroupe"){
+					$result = UserDAO::getAjaxGroupeNameForUserArray();
+				}
+				echo json_encode($result);
+			}
 		}
 	}

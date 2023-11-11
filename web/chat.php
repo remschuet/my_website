@@ -10,14 +10,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<link href="css/global.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
 		<div class="corp-admin">
-
+<!--
 			<form action="?logout=true" class="deconnexion" method="post">
 				<button class="lobbyBtn" type="submit">Quitter</button>
 			</form>
-			<div class="section-admin-top">
+-->			<div class="section-admin-top">
 				<b> <?php echo $data["username"] ?> </b>
 			</div>
 			<div class="section-msg">
@@ -46,11 +47,16 @@
 		})
 		
 		const refreshChat = () => {
-				fetch("ajax.php", {
-				method : "POST"
+			let formData = new FormData();
+    		formData.append('type', "getMsg");
+
+			fetch("ajax.php", {
+				method : "POST",
+				body: formData, // Utilisez formData comme corps de la requête
 			})
 			.then(response => response.json())
 			.then(data => {
+				console.log(data);
 				let node = document.querySelector(".section-msg");
 				node.innerHTML = "";
 
