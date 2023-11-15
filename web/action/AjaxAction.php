@@ -20,7 +20,10 @@
 				else if ($_POST['type'] == "getUser"){
 					$result = UserDAO::getAjaxUserForGroupeArray($_SESSION["groupe"]);
 				}
-
+				else if ($_POST['type'] == "remUserFromGroupe"){
+					$result = UserDAO::removeUserFromGroupe($_POST["user"], $_POST['groupe']);
+					exit;
+				}
 				echo json_encode($result);
 			}
 		}

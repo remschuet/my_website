@@ -30,12 +30,14 @@
 		</div>
 
 	<script>
+		let groupName;
 		window.addEventListener("load", () => {
 			let nodeBack = document.querySelector(".back");
 			nodeBack.addEventListener("click", () =>{
 				window.location.href = "chat.php";				
 			})
 
+			groupName = "<?php echo $_SESSION["groupe"] ?>";
 			refreshUser();
 		})
 
@@ -71,7 +73,19 @@
 
 					button.addEventListener("click", () => {
 						// Ajoutez ici le code que vous souhaitez exécuter lorsque le bouton est cliqué
-						console.log("supprimer :" + msg["username"]);
+						
+						let formData = new FormData();
+						formData.append('type', "remUserFromGroupe");
+						formData.append('user', msg["username"]);
+						formData.append('groupe', groupName);
+						fetch("ajax.php", {
+							method : "POST",
+							body: formData, // Utilisez formData comme corps de la requête
+						})
+						.then(response => response.json())
+						.then(data => {
+							console.log("supprimer : une personne");
+						});
 					});
 
 					// Ajouter à la même div parent

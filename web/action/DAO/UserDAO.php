@@ -91,8 +91,23 @@
             $query->bindParam(':username', $_userName, SQLITE3_TEXT);
             $query->bindParam(':groupeName', $_groupeName, SQLITE3_TEXT);
             $query->execute();
-        } 
+        }
 
+        // remove user to groupe 
+        public static function removeUserFromGroupe($_userName, $_groupeName){ /* str, str */
+            $db = new SQLite3('../private/mydata.db');
+
+            if ($_groupe_name == 'public'){
+                return;
+            }
+
+            $query = $db->prepare("DELETE FROM user_groupe WHERE user = (SELECT id FROM user where username = :userName) AND groupe = (SELECT id from groupe where name = :groupeName);");
+
+            // Liez les valeurs aux paramètres
+            $query->bindParam(':userName', $_userName, SQLITE3_TEXT);
+            $query->bindParam(':groupeName', $_groupeName, SQLITE3_TEXT);
+            $query->execute();
+        }
 
         // Get all msg for all groupes
         public static function getAjaxMessageArray() {
